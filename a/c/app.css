@@ -1,0 +1,31 @@
+@import "../v/reset.css";
+a {
+  color: black;
+}
+body {
+  background: black;
+  margin: 0;
+}
+#mainbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+#mainbar {
+  background: gray;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+#mainbar #navigation {
+  float: left;
+}
+#stage {
+  border: 1px solid red;
+}
+.device {
+  border: 1px dotted gray;
+}
+.device iframe {
+  border-width: 0;
+}
