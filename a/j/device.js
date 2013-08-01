@@ -2,9 +2,19 @@ var device = function() {
 		this.deviceData;
 
 		this.$el;
+		this.$hardware;
 		this.$iframe;
 		this.$name;
 		this.$size;
+
+		this.elSize = {
+			h: null,
+			w: null
+		};
+		this.hardwareSize = {
+			h: null,
+			w: null
+		};
 	},
 	p = device.prototype;
 
@@ -22,6 +32,10 @@ p.createDevice = function() {
 	this.$el = document.createElement('div');
 	this.$el.classList.add('device');
 
+	// hardware
+	this.$hardware = document.createElement('div');
+	this.$hardware.classList.add('hardware');
+
 	// frame
 	this.$iframe = document.createElement('iframe');
 
@@ -34,21 +48,59 @@ p.createDevice = function() {
 
 	this.$el.appendChild(this.$name);
 	this.$el.appendChild(this.$size);
-	this.$el.appendChild(this.$iframe);
+
+	this.$hardware.appendChild(this.$iframe);
+	this.$el.appendChild(this.$hardware);
+
 	_stage.$el.appendChild(this.$el);
 }
 
 p.events = function() {
-	this.$el.addEventListener('resize', this.$el);
+	//this.$el.addEventListener('resize', this.$el);
+	//this.$iframe.addEventListener('focus', this.$el);
+
+	this.$iframe.addEventListener('load', this.sendIframeLoad);
 }
 
 p.update = function(data) {
 	this.deviceData = data;
 
 	this.$name.innerText = data.name;
-	this.$size.innerText = data.h  + 'x' + data.w;
+	this.$size.innerText = data.w  + 'x' + data.h;
 	this.$iframe.height = data.h;
 	this.$iframe.width = data.w;
+
+	// remove other types ... lame
+	this.$hardware.classList.add(data.type);
+
+	this.getHardwareSize();
+}
+
+p.getHardwareSize = function() {
+	var $dummy = this.$el.cloneNode(true),
+		$dummyHardware = $dummy.querySelector('.hardware');
+	$dummy.classList.add('dummy');
+	$dummy.querySelector('iframe').src = '';
+	$dummyHardware.style.width = "auto";
+	$dummyHardware.style.height = "auto";
+	$dummy.style.width = "auto";
+	$dummy.style.height = "auto";
+	_stage.$el.appendChild($dummy);
+
+	console.log(['dummy Sizing', $dummy.offsetWidth, $dummy.offsetHeight]);
+	this.elSize = {
+		h: $dummy.offsetHeight,
+		w: $dummy.offsetWidth
+	};
+	this.hardwareSize = {
+		h: $dummyHardware.offsetHeight,
+		w: $dummyHardware.offsetWidth
+	};
+	$dummy.remove();
+}
+
+p.sendIframeLoad = function(e) {
+	console.log(['iframe load', e, this.src]);
 }
 
 p.updateHref = function(href) {
@@ -56,9 +108,15 @@ p.updateHref = function(href) {
 }
 
 p.updateScale = function(scale) {
-	this.$el.style.width = this.deviceData.w * scale;
-	this.$el.style.minHeight = this.deviceData.h * scale;
-	this.$iframe.style.webkitTransform = "scale(" + scale + ")";
+	this.$el.style.width = (this.elSize.w) * scale;
+	this.$el.style.height = (this.elSize.h) * scale;
+	this.$hardware.style.width = this.hardwareSize.w;
+	//this.$hardware.style.height = this.hardwareSize.g;
+	this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
+	//this.$hardware.style.top = Math.floor(0-(this.hardwareSize.h - (this.hardwareSize.h * scale)) / 2);
+
+	//this.$el.style.minHeight = (this.elSize.h) * scale;
+	this.$hardware.style.webkitTransform = "scale(" + scale + ")";
 }
 
 p.destroy = function() {

@@ -1,0 +1,71 @@
+@import url(http://fonts.googleapis.com/css?family=Patrick+Hand+SC|Loved+by+the+King|Indie+Flower|Coming+Soon);
+a {
+  color: black;
+}
+button {
+  border: 1px solid white;
+  background: white;
+  color: black;
+  font-style: 16px;
+  line-height: 16px;
+  height: 32px;
+  padding: 0 10px;
+  margin: 0;
+  box-shadow: 3px 5px 2px -2px rgba(0, 0, 0, 0.7);
+}
+button:focus {
+  outline-color: transparent;
+  outline-style: none;
+  border: 1px solid #ccccff;
+}
+select {
+  border: none;
+  outline: none;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  border: 1px solid white;
+  background: white;
+  color: black;
+  font-style: 16px;
+  line-height: 16px;
+  height: 32px;
+  padding: 0 10px;
+  margin: 0;
+  box-shadow: 3px 5px 2px -2px rgba(0, 0, 0, 0.7);
+}
+select:focus {
+  outline-color: transparent;
+  outline-style: none;
+  border: 1px solid #ccccff;
+}
+select::after {
+  content: 'yolo';
+  display: block;
+}
+input {
+  outline: none;
+  border: 1px solid white;
+  background: white;
+  color: black;
+  font-style: 16px;
+  line-height: 16px;
+  height: 32px;
+  padding: 0 10px;
+  margin: 0;
+  box-shadow: 3px 5px 2px -2px rgba(0, 0, 0, 0.7);
+  background: #fafafa;
+}
+input:focus {
+  outline-color: transparent;
+  outline-style: none;
+  border: 1px solid #ccccff;
+}
+body {
+  background: #326598;
+  color: #ffffff;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 20px;
+}

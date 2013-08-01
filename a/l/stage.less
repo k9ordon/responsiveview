@@ -1,5 +1,28 @@
 #stage {
-	margin-top: 23px;
+	//margin-top: 23px;
 	//border:1px solid red;
+
+	background-color:@backgroundColor;
+	/*
+	// http://lea.verou.me/css3patterns/#blueprint-grid
+	@colorA: rgba(255,255,255,0.1);
+	@colorB: rgba(255,255,255,0.05);
+	background-color:@backgroundColor;
+	background-image: linear-gradient(@colorA 1px, transparent 1px),
+	linear-gradient(90deg, @colorA 1px, transparent 1px),
+	linear-gradient(@colorB 1px, transparent 1px),
+	linear-gradient(90deg, @colorB 1px, transparent 1px);
+	background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+	background-position:-1px -1px, -1px -1px, -1px -1px, -1px -1px;
+	*/
+
 	white-space: nowrap;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 50;
+	top:0;
+	right:0;
+	padding:0 40px 100px;
+	overflow: scroll;
 }

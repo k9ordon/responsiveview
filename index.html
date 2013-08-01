@@ -7,20 +7,24 @@
 <body>
 
 	<div id="mainbar">
+		<div id="focusState"></div>
+
 		<form id="navigation">
 			<input id="href" type="text" class="text-field large" value=""/>
         	<button type="submit">goto</button>
 		</form>
 
-		<select id="deviceSetSelect">
-		</select>
+		<div id="deviceSettings">
+			<select id="deviceSetSelect">
+			</select>
 
-		<select id="deviceScaleSelect">
-			<option value="0.25">25%</option>
-			<option value="0.5">50%</option>
-			<option value="0.75">75%</option>
-			<option value="1">100%</option>
-		</select>
+			<select id="deviceScaleSelect">
+				<option value="1">Orginal Size</option>
+				<option value="0.8">Scaled 80%</option>
+				<option value="0.6">Scaled 60%</option>
+				<option value="0.4">Scaled 40%</option>
+			</select>
+		</div>
 	</div>
 
 	<div id="stage"></div>
