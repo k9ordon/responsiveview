@@ -5,6 +5,7 @@ a {
 body {
   background: black;
   margin: 0;
+  color: white;
 }
 #mainbar {
   position: fixed;
@@ -21,11 +22,20 @@ body {
   float: left;
 }
 #stage {
-  border: 1px solid red;
+  margin-top: 23px;
+  white-space: nowrap;
 }
 .device {
   border: 1px dotted gray;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding: 10px;
+  -webkit-transition: height 0.5s, width 0.5s;
 }
 .device iframe {
   border-width: 0;
+  border: 1px solid white;
+  -webkit-transition: all 0.5s;
+  -webkit-transform-origin: top left;
 }
