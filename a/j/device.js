@@ -9,9 +9,10 @@ var device = function() {
 	p = device.prototype;
 
 p.init = function(deviceData) {
-	this.deviceData = deviceData;
 	this.createDevice();
 	this.events();
+
+	this.update(deviceData);
 
 	return this;
 }
@@ -39,4 +40,27 @@ p.createDevice = function() {
 
 p.events = function() {
 	this.$el.addEventListener('resize', this.$el);
+}
+
+p.update = function(data) {
+	this.deviceData = data;
+
+	this.$name.innerText = data.name;
+	this.$size.innerText = data.h  + 'x' + data.w;
+	this.$iframe.height = data.h;
+	this.$iframe.width = data.w;
+}
+
+p.updateHref = function(href) {
+	this.$iframe.src = href;
+}
+
+p.updateScale = function(scale) {
+	this.$el.style.width = this.deviceData.w * scale;
+	this.$el.style.minHeight = this.deviceData.h * scale;
+	this.$iframe.style.webkitTransform = "scale(" + scale + ")";
+}
+
+p.destroy = function() {
+	this.$el.remove();
 }

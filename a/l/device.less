@@ -1,7 +1,17 @@
 .device {
 	border: 1px dotted gray;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	padding:10px; 
+
+	-webkit-transition: height 0.5s, width 0.5s;
 
 	iframe {
 		border-width:0;
+		border:1px solid white;
+		-webkit-transition: all 0.5s;
+		//-webkit-transition: height 1s, width 1s, transform 2s;
+		-webkit-transform-origin: top left;
 	}
 }
