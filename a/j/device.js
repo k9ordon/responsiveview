@@ -96,7 +96,8 @@ p.getHardwareSize = function() {
 		h: $dummyHardware.offsetHeight,
 		w: $dummyHardware.offsetWidth
 	};
-	$dummy.remove();
+	//$dummy.remove();
+	_stage.$el.removeChild($dummy);
 }
 
 p.sendIframeLoad = function(e) {
@@ -120,5 +121,5 @@ p.updateScale = function(scale) {
 }
 
 p.destroy = function() {
-	this.$el.remove();
+	_stage.$el.removeChild(this.$el);
 }
