@@ -1,6 +1,7 @@
 var stage = function() {
 		this.$el = document.querySelector('#stage');
 		this.devices = [];
+		this.href = null;
 	},
 	p = stage.prototype;
 
@@ -15,6 +16,8 @@ p.init = function() {
 p.events = function() {}
 
 p.updateHref = function(href) {
+	this.href = href;
+
 	//console.log(['stage loaded', href, this, _stage.$el]);
 	if(this.devices.length == 0) {
 		this.updateDeviceSet(_mainbar.getDeviceSet());
@@ -42,7 +45,9 @@ p.updateDeviceSet = function(deviceSet) {
 		if(i <= newCount && i > currentCount) {
 			// create device
 			//console.log('new');
-			newDevices.push(new device().init(devices[i-1]));
+			var newDevice = new device().init(devices[i-1]);
+			newDevices.push(newDevice);
+			newDevice.updateHref(this.href);
 		}
 		//		4	4				4	3
 		else if(i <= currentCount && i > newCount) {
@@ -70,6 +75,7 @@ p.updateDeviceScale = function(scale) {
 }
 
 p.focusDevice = function($iframe) {
+	this.unfocusAllDevices();
 	for(var i = 0; i < this.devices.length; i++) {
 		console.log(['focusDevice Loop', $iframe, this.devices[i].$iframe]);
 		if(this.devices[i].$iframe == $iframe) {
@@ -79,5 +85,7 @@ p.focusDevice = function($iframe) {
 }
 
 p.unfocusAllDevices = function() {
-
+	for(var i = 0; i < this.devices.length; i++) {
+		this.devices[i].$el.classList.remove('focus');
+	}
 }
