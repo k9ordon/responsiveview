@@ -10,30 +10,42 @@
 		<div id="focusState"></div>
 
 		<form id="navigation">
+			<button id="userhistoryTrigger" type="submit">History</button>
+
 			<input id="href" type="text" class="text-field large" value=""/>
-        	<button type="submit">goto</button>
+        	<button id="submit" type="submit">goto</button>
 		</form>
 
 		<div id="deviceSettings">
+			<label>
 			<select id="deviceSetSelect">
 			</select>
 
+			<label>
 			<select id="deviceScaleSelect">
-				<option value="1">Orginal Size</option>
+				<option value="1" selected>Orginal Size</option>
 				<option value="0.8">Scaled 80%</option>
+				<option value="0.7">Scaled 70%</option>
 				<option value="0.6">Scaled 60%</option>
 				<option value="0.4">Scaled 40%</option>
 			</select>
+			</label>
 		</div>
 	</div>
 
 	<div id="stage"></div>
-	<div id="devicebar"></div>
+
+	<div id="userhistory">
+		
+		<ul>
+		</ul>
+	</div>
 
 </body>
 
 <script type="text/javascript" src="a/d/deviceSets.js"></script>
 <script type="text/javascript" src="a/j/device.js"></script>
+<script type="text/javascript" src="a/j/userhistory.js"></script>
 <script type="text/javascript" src="a/j/mainbar.js"></script>
 <script type="text/javascript" src="a/j/stage.js"></script>
 <script type="text/javascript" src="a/j/app.js"></script>

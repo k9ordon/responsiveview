@@ -1,5 +1,6 @@
 var mainbar = function() {
 		this.$el = document.querySelector('#mainbar');
+		this.$userhistoryTrigger = document.querySelector('#userhistoryTrigger');
 		this.$navigationForm = document.querySelector('form#navigation');
 		this.$deviceSetSelect = document.querySelector('select#deviceSetSelect');
 		this.$deviceScaleSelect = document.querySelector('select#deviceScaleSelect');	
@@ -16,6 +17,7 @@ p.init = function() {
 }
 
 p.events = function() {
+	this.$userhistoryTrigger.addEventListener('click', _userhistory.toggle);
 	this.$navigationForm.addEventListener('submit', this.updateHref);
 	this.$deviceSetSelect.addEventListener('change', this.updateDeviceSet);
 	this.$deviceScaleSelect.addEventListener('change', this.updateDeviceScale);
@@ -27,7 +29,7 @@ p.events = function() {
 }
 
 p.keyupHandler = function(e) {
-	console.log(['keydown', e.keyCode]);
+	//console.log(['keydown', e.keyCode]);
 
 	// 1-9 for set scale
 	if(e.keyCode >= 49 && e.keyCode <= 57) {

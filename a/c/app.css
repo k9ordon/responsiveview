@@ -1,6 +1,6 @@
 @import "../v/reset.css";
 
-@import url(http://fonts.googleapis.com/css?family=Patrick+Hand+SC|Loved+by+the+King|Indie+Flower|Coming+Soon);
+@import url(http://fonts.googleapis.com/css?family=Patrick+Hand+SC);
 a {
   color: black;
 }
@@ -90,19 +90,21 @@ body {
 #mainbar #navigation {
   padding: 20px 20px;
   display: inline-block;
-  width: 50%;
+  width: 65%;
 }
-#mainbar #navigation input {
-  width: 80%;
-  float: left;
+#mainbar #navigation #userhistoryTrigger {
+  width: 15%;
 }
-#mainbar #navigation button {
-  width: 20%;
+#mainbar #navigation #href {
+  width: 70%;
+}
+#mainbar #navigation #submit {
+  width: 15%;
 }
 #mainbar #deviceSettings {
   padding: 20px 20px;
   display: inline-block;
-  width: 50%;
+  width: 35%;
   text-align: right;
 }
 #stage {
@@ -129,6 +131,10 @@ body {
   right: 0;
   padding: 0 40px 100px;
   overflow: scroll;
+  -webkit-transition: width 0.6s;
+}
+#stage.teaser {
+  width: 50%;
 }
 .device {
   display: inline-block;
@@ -157,8 +163,9 @@ body {
   border-width: 0;
   border: 2px solid #08b1eb;
 }
-.device.focus {
-  border: 1px solid red;
+.device.focus .hardware iframe {
+  border: 2px solid yellow;
+  box-shadow: 0 0 50px -10px #ffff00;
 }
 .device.dummy {
   position: absolute;
@@ -197,4 +204,17 @@ body {
   border: 2px solid #08b1eb;
   border-radius: 180px;
   box-shadow: inset 0 10px 20px -5px rgba(0, 0, 0, 0.3);
+}
+#userhistory {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  z-index: 90;
+  background: #E7DBC2;
+  -webkit-transition: left 0.6s;
+}
+#userhistory.visible {
+  left: 0%;
 }
