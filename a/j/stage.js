@@ -22,8 +22,6 @@ p.events = function() {
 }
 
 p.onMessage = function(event){
-    _stage.origin = event.origin;
-
     switch (event.data.method) {
         case 'handshake' :
             _stage.deviceHandshake(event);
@@ -37,18 +35,30 @@ p.onMessage = function(event){
 
 p.deviceHandshake = function(event) {
     var request = event.data;
-    console.log('stage.registered handshake');
+    //console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
 
-    for(var i = 0; i < this.devices.length; i++) {
-        if(this.devices[i].deviceData.w == request.w && this.devices[i].deviceData.h == request.h) {
-            console.log('handshake ok!');
-            this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
+    if(this.href == null 
+        || this.href == request.l 
+        || this.href == request.r) {
+
+        for(var i = 0; i < this.devices.length; i++) {
+            if(this.devices[i].deviceData.w == request.w && this.devices[i].deviceData.h == request.h) {
+                // console.log('handshake ok!');
+
+                this.origin = event.origin;
+                this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
+
+                if(this.href != request.l) {
+                    this.updateHref(request.l);
+                    this.href = request.l;
+                }
+            }
         }
     }
 }
 
 p.updateHref = function(href) {
-	this.href = href;
+    this.href = null;
 
 	//console.log(['stage loaded', href, this, _stage.$el]);
 	if(this.devices.length == 0) {
@@ -59,12 +69,14 @@ p.updateHref = function(href) {
 		//console.log(['stage update device href', i, href]);
 		this.devices[i].updateHref(href);
 	}
+
+    _mainbar.$navigationForm.href.value = href;
 }
 
 p.updateScroll = function(top, left, srcIdx) {
     for(var i = 0; i < this.devices.length; i++) {
         if(i != srcIdx) {
-            console.log('update ' + i, this.origin);
+            //console.log('update ' + i, this.origin);
 
             this.devices[i].$iframe.contentWindow.postMessage({method: 'scroll',
                 top : top, left: left}, this.origin);
