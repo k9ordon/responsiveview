@@ -1,5 +1,12 @@
 var deviceSets = [
     {
+        name : 'Two Devices',
+        devices : [
+            { name: 'iPhone 4', w: 320, h:480, type:'phone', rotated: { w:416, h:320} },
+            { name: 'iPhone 5', w: 320, h:568, type:'phone', rotated: { w:568, h:320} }
+        ]
+    },
+    {
         name : 'Simple Devices',
         devices : [
             { name: 'Phone', w: 320, h:480, type:'phone', rotated: { w:416, h:320} },
