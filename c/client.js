@@ -1,7 +1,7 @@
 var rv_host = 'http://rv.duro';
 
-if(window.location.origin != rv_host) {
-console.log('===> responsive view client injected at ' + window.location.href + ' orgin:' + window.location.origin);
+if(window.location.origin != rv_host) { //  && document.referrer.indexOf(rv_host) == 0
+console.log('===> responsive view client injected at ' + window.location.origin);
 
     var rvwaiter = function() { return this; },
         p = rvwaiter.prototype;
@@ -9,11 +9,15 @@ console.log('===> responsive view client injected at ' + window.location.href + 
     p.init = function() {
         console.log('rv waiter init');
         addEventListener("message", this.onMessage, false);
-        top.postMessage({method: 'handshake', h: window.innerHeight, w: window.innerWidth}, rv_host);
+        try {
+            top.postMessage({method: 'handshake', h: window.innerHeight, w: window.innerWidth, l: window.location.href, o: window.location.origin, r: document.referrer}, rv_host);
+        } catch(e) {
+            console.log('nope');
+        }
     }
 
     p.onMessage = function(event) {
-        console.log('waiter recived message', event.data);
+        //console.log('waiter recived message', event.data);
         if(event.data.method == 'handshake' && event.data.hasOwnProperty('deviceIdx')) {
             removeEventListener("message", _rvwaiter.onMessage);
             _rvclient = new rvclient();
@@ -60,19 +64,18 @@ console.log('===> responsive view client injected at ' + window.location.href + 
                 window.scrollTo(event.data.left,event.data.top);
                 setTimeout(function() {
                     _rvclient.remoteScroll = false;
-                },10);
+                },1000);
                 break;
         }
     }
 
     p.onScroll = function() {
+        // only if not remote scrolled by stage
         if(_rvclient.remoteScroll == false) {
             top.postMessage({ method: 'scroll', idx: _rvclient.deviceIdx, 
                 scrollTop: document.body.scrollTop, 
                 scrollLeft: document.body.scrollLeft
             }, _rvclient.host);
-        } else {
-            console.log('!!!!!!!!!!!! is remote scrolled');
         }
     }
 
