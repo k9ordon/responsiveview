@@ -59,7 +59,7 @@ p.events = function() {
 	//this.$el.addEventListener('resize', this.$el);
 	//this.$iframe.addEventListener('focus', this.$el);
 
-	this.$iframe.addEventListener('load', this.sendIframeLoad);
+	//this.$iframe.addEventListener('load', this.sendIframeLoad);
 }
 
 p.update = function(data) {
@@ -87,7 +87,7 @@ p.getHardwareSize = function() {
 	$dummy.style.height = "auto";
 	_stage.$el.appendChild($dummy);
 
-	console.log(['dummy Sizing', $dummy.offsetWidth, $dummy.offsetHeight]);
+	// console.log(['dummy Sizing', $dummy.offsetWidth, $dummy.offsetHeight]);
 	this.elSize = {
 		h: $dummy.offsetHeight,
 		w: $dummy.offsetWidth
