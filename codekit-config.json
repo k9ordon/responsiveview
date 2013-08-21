@@ -54,22 +54,16 @@
       "fileType" : 1,
       "debugStyle" : 2
     },
-    "\/a\/l\/hello.less" : {
-      "ieCompatibility" : 1,
-      "inputAbbreviatedPath" : "\/a\/l\/hello.less",
-      "outputAbbreviatedPath" : "\/a\/c\/hello.css",
-      "outputPathIsSetByUser" : 0,
-      "strictUnits" : 0,
-      "relativeURLS" : 0,
-      "ignore" : 0,
-      "strictImports" : 0,
-      "ignoreWasSetByUser" : 0,
-      "shouldRunBless" : 0,
+    "\/a\/d\/deviceSets.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
       "hidden" : 0,
-      "strictMath" : 0,
-      "outputStyle" : 0,
-      "fileType" : 1,
-      "debugStyle" : 0
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/a\/d\/deviceSets.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/a\/d\/deviceSets-ck.js",
+      "fileType" : 64
     },
     "\/a\/j\/userhistory.js" : {
       "ignoreWasSetByUser" : 1,
@@ -91,6 +85,23 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
+    "\/a\/l\/hello.less" : {
+      "ieCompatibility" : 1,
+      "inputAbbreviatedPath" : "\/a\/l\/hello.less",
+      "outputAbbreviatedPath" : "\/a\/c\/hello.css",
+      "outputPathIsSetByUser" : 0,
+      "strictUnits" : 0,
+      "relativeURLS" : 0,
+      "ignore" : 0,
+      "strictImports" : 0,
+      "ignoreWasSetByUser" : 0,
+      "shouldRunBless" : 0,
+      "hidden" : 0,
+      "strictMath" : 0,
+      "outputStyle" : 0,
+      "fileType" : 1,
+      "debugStyle" : 0
+    },
     "\/a\/l\/device.less" : {
       "ieCompatibility" : 1,
       "inputAbbreviatedPath" : "\/a\/l\/device.less",
@@ -107,17 +118,6 @@
       "outputStyle" : 0,
       "fileType" : 1,
       "debugStyle" : 0
-    },
-    "\/a\/d\/deviceSets.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/a\/d\/deviceSets.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/a\/d\/deviceSets-ck.js",
-      "fileType" : 64
     },
     "\/a\/f\/icon\/lte-ie7.js" : {
       "ignoreWasSetByUser" : 1,
@@ -289,17 +289,6 @@
       "fileType" : 1,
       "debugStyle" : 0
     },
-    "\/c\/background.js" : {
-      "ignoreWasSetByUser" : 1,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/c\/background.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 0,
-      "outputAbbreviatedPath" : "\/c\/background-ck.js",
-      "fileType" : 64
-    },
     "\/a\/j\/_skelet.js" : {
       "ignoreWasSetByUser" : 1,
       "ignore" : 1,
@@ -309,6 +298,17 @@
       "outputStyle" : 1,
       "syntaxCheckerStyle" : 0,
       "outputAbbreviatedPath" : "\/a\/j\/_skelet-ck.js",
+      "fileType" : 64
+    },
+    "\/c\/background.js" : {
+      "ignoreWasSetByUser" : 1,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/c\/background.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 0,
+      "outputAbbreviatedPath" : "\/c\/background-ck.js",
       "fileType" : 64
     }
   },
