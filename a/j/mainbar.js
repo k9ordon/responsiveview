@@ -32,12 +32,12 @@ p.keyupHandler = function(e) {
 	//console.log(['keydown', e.keyCode]);
 
 	// 1-9 for set scale
-	if(e.keyCode >= 49 && e.keyCode <= 57) {
-		var idx = e.keyCode - 49;
+	if(e.keyCode >= 48 && e.keyCode <= 57) {
+		var idx = e.keyCode - 48;
 		if(idx < _mainbar.$deviceScaleSelect.length) {
 			_mainbar.$deviceScaleSelect.value = _mainbar.$deviceScaleSelect.querySelectorAll('option')[idx].value;
 			_mainbar.updateDeviceSet();
-			console.log(['device set change', idx]);
+			console.log(['device scale change', idx]);
 		}
 	}
 
