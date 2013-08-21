@@ -2,18 +2,50 @@ var stage = function() {
 		this.$el = document.querySelector('#stage');
 		this.devices = [];
 		this.href = null;
+        this.origin = null;
 	},
 	p = stage.prototype;
 
 p.init = function() {
 	//console.log(['stage init', this.$el]);
 	this.events();
-	this.updateHref('hello.html');
 
 	return this;
 }
 
-p.events = function() {}
+p.isStage = function () {
+    return true;
+}
+
+p.events = function() {
+    window.addEventListener("message", this.onMessage, false);
+}
+
+p.onMessage = function(event){
+    _stage.origin = event.origin;
+
+    switch (event.data.method) {
+        case 'handshake' :
+            _stage.deviceHandshake(event);
+            break;
+        case 'scroll' :
+            console.log('scrolled : ' + event.data.scrollTop, event.data.idx);
+            _stage.updateScroll(event.data.scrollTop, event.data.scrollLeft, event.data.idx);
+            break;
+    }
+};
+
+p.deviceHandshake = function(event) {
+    var request = event.data;
+    console.log('stage.registered handshake');
+
+    for(var i = 0; i < this.devices.length; i++) {
+        if(this.devices[i].deviceData.w == request.w && this.devices[i].deviceData.h == request.h) {
+            console.log('handshake ok!');
+            this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
+        }
+    }
+}
 
 p.updateHref = function(href) {
 	this.href = href;
@@ -27,6 +59,17 @@ p.updateHref = function(href) {
 		//console.log(['stage update device href', i, href]);
 		this.devices[i].updateHref(href);
 	}
+}
+
+p.updateScroll = function(top, left, srcIdx) {
+    for(var i = 0; i < this.devices.length; i++) {
+        if(i != srcIdx) {
+            console.log('update ' + i, this.origin);
+
+            this.devices[i].$iframe.contentWindow.postMessage({method: 'scroll',
+                top : top, left: left}, this.origin);
+        }
+    }
 }
 
 p.updateDeviceSet = function(deviceSet) {
