@@ -7,8 +7,9 @@ var userhistory = function() {
 	p = userhistory.prototype;
 
 p.init = function() {
-	console.log(['userhistory init', this.$el, this.history]);
-	this.createList();
+	// console.log(['userhistory init', this.$el, this.history]);
+	
+    this.createList();
 	this.events();
 	return this;
 }
@@ -17,8 +18,9 @@ p.events = function() {
 }
 
 p.createList = function() {
-	console.log(['createList', this.history.length, this.history]);
-	for(var idx = Object.keys(this.history).length-1; idx >= 0; idx--) {
+	//console.log(['createList', this.history.length, this.history]);
+	
+    for(var idx = Object.keys(this.history).length-1; idx >= 0; idx--) {
 		var historyItem = this.history[Object.keys(this.history)[idx]];
 		console.log(['historyItem', idx, historyItem]);
 
