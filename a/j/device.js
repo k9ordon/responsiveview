@@ -71,6 +71,7 @@ p.update = function(data) {
 	this.$iframe.width = data.w;
 
 	// remove other types ... lame
+    this.$hardware.className = 'hardware';
 	this.$hardware.classList.add(data.type);
 
 	this.getHardwareSize();

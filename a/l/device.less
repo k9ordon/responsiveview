@@ -54,6 +54,8 @@
 }
 
 // device types
+
+// phone
 .device .hardware.phone {
 	border:2px solid @lightColor;
 	padding: 90px 10px;
@@ -96,4 +98,100 @@
 	iframe {
 		//border-radius: 5px;
 	}
+}
+
+
+// tablet
+.device .hardware.tablet {
+    border:2px solid @lightColor;
+    padding: 50px 30px;
+    border-radius: 40px;
+
+    iframe {
+        //border-radius: 5px;
+    }
+}
+
+
+
+// desktop
+.device .hardware.desktop {
+    border:2px solid @lightColor;
+    padding: 40px;
+    border-radius: 10px;
+
+    &:before {
+        position: absolute;
+        bottom:-100px;
+        left:50%;
+        margin-left:-120px;
+        content: '.';
+        height: 100px;
+        width: 240px;
+        background: transparent;
+        color: transparent;
+        border:2px solid @lightColor;
+        border-width: 0 2px 0 2px;
+    }
+
+    &:after {
+        position: absolute;
+        bottom:-125px;
+        left:50%;
+        margin-left:-300px;
+        content: '.';
+        height: 20px;
+        width: 600px;
+        background: transparent;
+        color: transparent;
+        border:2px solid @lightColor;
+        border-radius:0px;
+    }
+
+
+    iframe {
+        //border-radius: 5px;
+    }
+}
+
+// laptop
+.device .hardware.laptop {
+    border:2px solid @lightColor;
+    padding: 40px;
+    border-radius: 50px 50px 0 0;
+
+    &:before {
+        position: absolute;
+        top:5px;
+        left:50%;
+        margin-left:-10px;
+        content: '.';
+        height: 20px;
+        width: 20px;
+        background: transparent;
+        color: transparent;
+        border:2px solid @lightColor;
+        border-radius:180px;
+
+        //box-shadow: inset 0 7px 5px -5px rgba(0,0,0,0.5);
+    }
+
+    &:after {
+        position: absolute;
+        bottom:-65px;
+        left:-2px;
+        content: '.';
+        height: 60px;
+        width: 100%;
+        background: transparent;
+        color: transparent;
+        border:2px solid @lightColor;
+        border-top:0;
+        border-radius:0 0 40px 40px;
+    }
+
+
+    iframe {
+        //border-radius: 5px;
+    }
 }
