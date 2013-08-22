@@ -35,7 +35,7 @@ p.onMessage = function(event){
 
 p.deviceHandshake = function(event) {
     var request = event.data;
-    //console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
+    console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
 
     if(this.href == null 
         || this.href == request.l 
@@ -43,7 +43,7 @@ p.deviceHandshake = function(event) {
 
         for(var i = 0; i < this.devices.length; i++) {
             if(this.devices[i].deviceData.w == request.w && this.devices[i].deviceData.h == request.h) {
-                // console.log('handshake ok!');
+                console.log('handshake ok!', request.l);
 
                 this.origin = event.origin;
                 this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
