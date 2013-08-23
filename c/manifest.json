@@ -1,7 +1,11 @@
 {
+    "manifest_version": 2,
     "name": "Responsive View - Chrome Helper",
     "version": "1.0",
-
+    "description": "Helper Chrome extenstion for rv.k94n.com",
+    "icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
 
     "permissions": ["tabs","<all_urls>"],
 
@@ -14,10 +18,9 @@
     }
     ],
 
-    "manifest_version": 2,
-
     "browser_action": {
-        "default_title": "Responsive View"
+        "default_title": "Responsive View",
+        "default_icon": "icon48.png"
     },
 
     "background": {

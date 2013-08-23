@@ -1,6 +1,6 @@
 console.log('background loaded');
 
-chrome.browserAction.setBadgeText({text : 'ninja'});
+//chrome.browserAction.setBadgeText({text : 'ninja'});
 
 chrome.browserAction.onClicked.addListener(function(tab) {
     console.log('Button Pressed', tab.url);
