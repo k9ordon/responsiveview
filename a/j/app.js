@@ -1,3 +1,7 @@
+if(!!window.webkitURL == false) {
+    alert('Built for webkit browsers!');
+}
+
 var _userhistory = new userhistory();
 _userhistory.init();
 
@@ -6,7 +10,6 @@ _mainbar.init();
 
 var _stage = new stage();
 _stage.init();
-
 
 
 if(window.location.hash) {
