@@ -49,15 +49,20 @@ p.deviceHandshake = function(event) {
                 this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
 
                 if(this.href != request.l) {
-                    this.updateHref(request.l);
-                    this.href = request.l;
+                    this.setHref(request.l);
+                    this.updateStageHref(request.l)
                 }
             }
         }
     }
 }
 
-p.updateHref = function(href) {
+p.updateStageHref = function(href) {
+    this.href = href;
+    window.location.hash = href;
+}
+
+p.setHref = function(href) {
     this.href = null;
 
 	//console.log(['stage loaded', href, this, _stage.$el]);

@@ -6,5 +6,13 @@ _mainbar.init();
 
 var _stage = new stage();
 _stage.init();
-_stage.updateHref('http://duro/responsiveview/hello.html');
-//_stage.updateHref('http://k94n.duro');
+
+
+
+if(window.location.hash) {
+    var hashUrl = window.location.hash.substring(1);
+    _stage.setHref(hashUrl);
+} else {
+    //_stage.setHref('hello.html');
+    _stage.setHref('http://k94n.duro');
+}
