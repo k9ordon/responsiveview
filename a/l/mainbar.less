@@ -19,7 +19,7 @@
 	#navigation {
 		padding:20px 20px;
 		display: inline-block;
-		width:65%;
+		width:50%;
 		
 		#href {
 			width: 70%;
@@ -33,10 +33,24 @@
 	#deviceSettings {
 		padding:20px 20px;
 		display: inline-block;
-		width:35%;
-		text-align: right;
+		width:50%;
+		
+        text-align: right;
 		select {
 			//min-width:30%;
 		}
+
+        a#extensionButton {
+            .guiElement();
+            float: right;
+            background: yellow;
+            margin-left: 5px;
+        }
 	}
+}
+
+body.hasExtension {
+    #extensionButton {
+        display: none;
+    }
 }
