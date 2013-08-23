@@ -19,6 +19,22 @@ p.isStage = function () {
 
 p.events = function() {
     window.addEventListener("message", this.onMessage, false);
+    document.addEventListener("scroll", this.onScroll, false);
+
+}
+
+p.onScroll = function(event) {
+    var percent = Math.round(
+        (document.body.scrollTop / ((document.body.offsetHeight - window.innerHeight) / 100)) / 10
+    ) / 10;
+    percent = percent ? percent : 0.1;
+    
+    console.log('set to' + percent);
+
+    _mainbar.$deviceScaleSelect.value = percent;
+    _mainbar.updateDeviceSet();
+
+    //_stage.updateDeviceScale(percent);
 }
 
 p.onMessage = function(event){
