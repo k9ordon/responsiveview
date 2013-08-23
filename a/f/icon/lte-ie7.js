@@ -3,20 +3,13 @@
 window.onload = function() {
 	function addIcon(el, entity) {
 		var html = el.innerHTML;
-		el.innerHTML = '<span style="font-family: \'icomoon\'">' + entity + '</span>' + html;
+		el.innerHTML = '<span style="font-family: \'brankic1979\'">' + entity + '</span>' + html;
 	}
 	var icons = {
-			'icon-clock' : '&#xe000;',
-			'icon-star' : '&#xe001;',
-			'icon-refresh' : '&#xe002;',
-			'icon-views' : '&#xe003;',
-			'icon-magnifier' : '&#xe004;',
-			'icon-stack' : '&#xe005;',
-			'icon-rotate' : '&#xe006;',
-			'icon-heart' : '&#xe007;',
-			'icon-heart-2' : '&#xe008;',
-			'icon-bookmark' : '&#xe009;',
-			'icon-calendar' : '&#xe00a;'
+			'icon-magnifier' : '&#xe005;',
+			'icon-stack' : '&#xe00a;',
+			'icon-compass' : '&#xe006;',
+			'icon-download' : '&#xe004;'
 		},
 		els = document.getElementsByTagName('*'),
 		i, attr, html, c, el;

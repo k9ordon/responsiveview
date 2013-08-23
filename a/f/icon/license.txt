@@ -1,10 +1,2 @@
 Icon Set:	Brankic1979 -- http://brankic1979.com/icons/
 License:	Custom -- http://brankic1979.com/icons/
-
-
-Icon Set:	Typicons -- http://typicons.com/
-License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
-
-
-Icon Set:	Icon Minia -- http://dribbble.com/shots/598215-Icon-Minia-139-Vector-Icons
-License:	GPL V3 -- http://www.gnu.org/copyleft/gpl.html
