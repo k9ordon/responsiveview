@@ -40,11 +40,6 @@ p.keyupHandler = function(e) {
 			console.log(['device scale change', idx]);
 		}
 	}
-
-	// q toggle 100% || scaled
-	if(e.keyCode == 81) {
-		_mainbar.$deviceSetSelect.value
-	}
 }
 
 p.createDeviceSelect = function() {
