@@ -59,7 +59,7 @@ p.createDeviceSelect = function() {
 p.updateHref = function(e) {
 	e.preventDefault();
 	//console.log(['mainbar load href', this.href.value, e]);
-	_stage.updateHref(this.href.value);
+	_stage.setHref(this.href.value);
 }
 
 p.updateDeviceSet = function(e) {
