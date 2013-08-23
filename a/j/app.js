@@ -14,5 +14,5 @@ if(window.location.hash) {
     _stage.setHref(hashUrl);
 } else {
     //_stage.setHref('hello.html');
-    _stage.setHref('http://k94n.duro');
+    _stage.setHref('http://k94n.com');
 }
