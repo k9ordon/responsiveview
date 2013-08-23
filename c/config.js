@@ -1,0 +1,1 @@
+var rv_host = 'http://rv.duro';

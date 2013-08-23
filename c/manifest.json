@@ -12,7 +12,7 @@
     "content_scripts": [
     {
         "matches": ["http://*/*"],
-        "js": ["client.js"],
+        "js": ["config.js", "client.js"],
         "run_at": "document_idle",
         "all_frames": true
     }
@@ -24,7 +24,7 @@
     },
 
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["config.js", "background.js"]
     }
 
 

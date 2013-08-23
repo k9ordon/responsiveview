@@ -1,7 +1,7 @@
-var rv_host = 'http://rv.duro';
-
-if(window.location.origin != rv_host) { //  && document.referrer.indexOf(rv_host) == 0
-console.log('===> responsive view client injected at ' + window.location.origin);
+if(window.location.origin == rv_host) {
+    document.body.classList.add('hasExtension');
+} else { //  if document.referrer.indexOf(rv_host) == 0
+    console.log('===> responsive view client injected at ' + window.location.origin);
 
     var rvwaiter = function() { return this; },
         p = rvwaiter.prototype;
@@ -78,6 +78,4 @@ console.log('===> responsive view client injected at ' + window.location.origin)
             }, _rvclient.host);
         }
     }
-
-
 }
