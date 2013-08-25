@@ -1,1 +1,1 @@
-var rv_host = 'http://rv.duro';
+var rv_host = 'http://rv.duro/';
