@@ -15,7 +15,9 @@ p.init = function() {
 
 p.events = function() {
 	this.$userhistoryTrigger.addEventListener('click', _userhistory.toggle);
+
 	this.$navigationForm.addEventListener('submit', this.updateHref);
+
 	this.$deviceSetSelect.addEventListener('change', this.updateDeviceSet);
 	this.$deviceScaleSelect.addEventListener('change', this.updateDeviceScale);
 

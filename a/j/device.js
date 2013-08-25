@@ -51,9 +51,7 @@ p.createDevice = function() {
 }
 
 p.events = function() {
-	//this.$el.addEventListener('resize', this.$el);
 	//this.$iframe.addEventListener('focus', this.$el);
-
 	//this.$iframe.addEventListener('load', this.sendIframeLoad);
 }
 
@@ -82,7 +80,6 @@ p.getHardwareSize = function() {
 	$dummy.style.height = "auto";
 	_stage.$el.appendChild($dummy);
 
-	// console.log(['dummy Sizing', $dummy.offsetWidth, $dummy.offsetHeight]);
 	this.elSize = {
 		h: $dummy.offsetHeight,
 		w: $dummy.offsetWidth
@@ -91,12 +88,8 @@ p.getHardwareSize = function() {
 		h: $dummyHardware.offsetHeight,
 		w: $dummyHardware.offsetWidth
 	};
-	//$dummy.remove();
-	_stage.$el.removeChild($dummy);
-}
 
-p.sendIframeLoad = function(e) {
-	console.log(['iframe load', e, this.src]);
+	_stage.$el.removeChild($dummy);
 }
 
 p.updateHref = function(href) {
@@ -109,9 +102,7 @@ p.updateScale = function(scale) {
 	this.$el.style.height = (this.elSize.h) * scale;
 
 	this.$hardware.style.width = this.hardwareSize.w;
-	//this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
-
-    console.log('scale', this.$el.style.width, scale, this.hardwareSize, (this.hardwareSize.w * scale));
+    this.$hardware.style.height = this.hardwareSize.h;
 
 	this.$hardware.style.webkitTransform = "scale(" + scale + ")";
 }

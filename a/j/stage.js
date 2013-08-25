@@ -11,9 +11,6 @@ var stage = function() {
         // currently displayed website origin
         this.origin = null;
 
-        // is stage stage focused (or device)
-        this.isFocused = false;
-
 	}, p = stage.prototype;
 
 p.init = function() {
@@ -48,11 +45,6 @@ p.onScroll = function(event) {
 
     // update devices
     _stage.updateDeviceScale(percent);
-}
-
-p.onFocus = function() {
-    _stage.isFocused = true;
-    console.log('stage focused');
 }
 
 // get messages from subframe

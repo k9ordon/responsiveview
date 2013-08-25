@@ -7,7 +7,6 @@
 <body>
 
 	<div id="mainbar">
-		<div id="focusState"></div>
         <button id="userhistoryTrigger">History</button>
 
 		<form id="navigation">
@@ -16,18 +15,12 @@
 		</form>
 
 		<div id="deviceSettings">
-            <a href="https://chrome.google.com/webstore/detail/hfkchhgoijlonlhpmgefgolgbipellmg" id="extensionButton">
-            <span aria-hidden="true" class="icon-download"></span>
+            <a href="https://chrome.google.com/webstore/detail/hfkchhgoijlonlhpmgefgolgbipellmg" id="extensionButton"><span aria-hidden="true" class="icon-download"></span>
             Get Chrome Extension</a>
 
-			<label>
-
-			<select id="deviceSetSelect">
-			</select>
-            </label>
-
-			<label>
-			<select id="deviceScaleSelect">
+			<label><select id="deviceSetSelect"></select></label>
+			
+            <label><select id="deviceScaleSelect">
                 <option value="1">Orginal Size</option>
                 <option value="0.1">Scaled 10%</option>
                 <option value="0.2">Scaled 20%</option>
@@ -38,18 +31,13 @@
                 <option value="0.7">Scaled 70%</option>
                 <option value="0.8">Scaled 80%</option>
                 <option value="0.9">Scaled 90%</option>
-			</select>
-			</label>
+			</select></label>
 		</div>
 	</div>
 
 	<div id="stage"></div>
 
-	<div id="userhistory">
-		
-		<ul>
-		</ul>
-	</div>
+	<div id="userhistory"><ul></ul></div>
 
 
 <script>
@@ -65,11 +53,16 @@
 
 </body>
 
+<!-- data -->
 <script type="text/javascript" src="a/d/deviceSets.js"></script>
+
+<!-- classes -->
 <script type="text/javascript" src="a/j/device.js"></script>
 <script type="text/javascript" src="a/j/userhistory.js"></script>
 <script type="text/javascript" src="a/j/mainbar.js"></script>
 <script type="text/javascript" src="a/j/stage.js"></script>
+
+<!-- boot -->
 <script type="text/javascript" src="a/j/app.js"></script>
 
 </html>

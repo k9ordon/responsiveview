@@ -2,8 +2,6 @@ if(!!window.webkitURL == false) {
     alert('Built for webkit browsers!');
 }
 
-// bootstrap
-
 var _userhistory = new userhistory();
 _userhistory.init();
 
@@ -12,8 +10,6 @@ _mainbar.init();
 
 var _stage = new stage();
 _stage.init();
-
-// route
 
 if(window.location.hash) {
     var hashUrl = window.location.hash.substring(1);
