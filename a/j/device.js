@@ -109,15 +109,14 @@ p.updateHref = function(href) {
 	this.$iframe.src = href;
 }
 
+// resizes a device based on a scale factor
 p.updateScale = function(scale) {
 	this.$el.style.width = (this.elSize.w) * scale;
 	this.$el.style.height = (this.elSize.h) * scale;
-	this.$hardware.style.width = this.hardwareSize.w;
-	//this.$hardware.style.height = this.hardwareSize.g;
-	this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
-	//this.$hardware.style.top = Math.floor(0-(this.hardwareSize.h - (this.hardwareSize.h * scale)) / 2);
 
-	//this.$el.style.minHeight = (this.elSize.h) * scale;
+	this.$hardware.style.width = this.hardwareSize.w;
+	this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
+
 	this.$hardware.style.webkitTransform = "scale(" + scale + ")";
 }
 
