@@ -29,9 +29,9 @@ p.events = function() {
     // document.addEventListener("scroll", this.onScroll, false);
 
     // mouseover stage
-    document.addEventListener("mouseover", this.onFocus, false);
-    document.addEventListener("focus", this.onFocus, false);
-    document.addEventListener("blur", this)
+    //document.addEventListener("mouseover", this.onFocus, false);
+    //document.addEventListener("focus", this.onFocus, false);
+    //document.addEventListener("blur", this)
 }
 
 p.onScroll = function(event) {
