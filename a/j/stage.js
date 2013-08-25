@@ -1,69 +1,81 @@
 var stage = function() {
+        // stage element
 		this.$el = document.querySelector('#stage');
-		this.devices = [];
+		
+        // array of device instances
+        this.devices = [];
+
+        // currently displayed website
 		this.href = null;
+
+        // currently displayed website origin
         this.origin = null;
-	},
-	p = stage.prototype;
+	}, p = stage.prototype;
 
 p.init = function() {
-	//console.log(['stage init', this.$el]);
 	this.events();
-
 	return this;
 }
 
-p.isStage = function () {
-    return true;
-}
-
 p.events = function() {
+    // get messages from subframe
     window.addEventListener("message", this.onMessage, false);
+    
+    // scale on scroll
     document.addEventListener("scroll", this.onScroll, false);
-
 }
 
 p.onScroll = function(event) {
+    // round (scrollTop / (page size / 100) / 10) / 10
     var percent = Math.round(
         (document.body.scrollTop / ((document.body.offsetHeight - window.innerHeight) / 100)) / 10
     ) / 10;
+
+    // min 0.1
     percent = percent ? percent : 0.1;
-    
-    console.log('set to' + percent);
 
+    // update scale on mainbar
     _mainbar.$deviceScaleSelect.value = percent;
-    _mainbar.updateDeviceSet();
 
-    //_stage.updateDeviceScale(percent);
+    // update devices
+    _stage.updateDeviceScale(percent);
 }
 
+// get messages from subframe
 p.onMessage = function(event){
     switch (event.data.method) {
+        // subframe handshake
         case 'handshake' :
             _stage.deviceHandshake(event);
             break;
+
+        // subframe scrolls
         case 'scroll' :
-            console.log('scrolled : ' + event.data.scrollTop, event.data.idx);
             _stage.updateScroll(event.data.scrollTop, event.data.scrollLeft, event.data.idx);
             break;
     }
 };
 
+// register a subframe handshake as device
 p.deviceHandshake = function(event) {
     var request = event.data;
     console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
 
-    if(this.href == null 
-        || this.href == request.l 
-        || this.href == request.r) {
+    if(this.href == null // initial handshake
+        || this.href == request.l // new frame handshake
+        || this.href == request.r) // page change in subframe
+        {
 
         for(var i = 0; i < this.devices.length; i++) {
+            // sussess if device size match
             if(this.devices[i].deviceData.w == request.w && this.devices[i].deviceData.h == request.h) {
                 console.log('handshake ok!', request.l);
 
+                // send handshake back to subframe
                 this.origin = event.origin;
                 this.devices[i].$iframe.contentWindow.postMessage({method: 'handshake', deviceIdx : i}, event.origin);
 
+                // update stage href if valid handshake from another location
                 if(this.href != request.l) {
                     this.setHref(request.l);
                     this.updateStageHref(request.l)
@@ -73,42 +85,38 @@ p.deviceHandshake = function(event) {
     }
 }
 
+// update current stage href 
 p.updateStageHref = function(href) {
     this.href = href;
     window.location.hash = href;
 }
 
+// setter for stage href
 p.setHref = function(href) {
     this.href = null;
 
-	//console.log(['stage loaded', href, this, _stage.$el]);
 	if(this.devices.length == 0) {
 		this.updateDeviceSet(_mainbar.getDeviceSet());
 	}
-
+    // update all subframes
 	for(var i = 0; i < this.devices.length; i++) {
-		//console.log(['stage update device href', i, href]);
 		this.devices[i].updateHref(href);
 	}
-
     _mainbar.$navigationForm.href.value = href;
 }
 
+// update scroll for all subframes (except idx)
 p.updateScroll = function(top, left, srcIdx) {
     for(var i = 0; i < this.devices.length; i++) {
         if(i != srcIdx) {
-            //console.log('update ' + i, this.origin);
-
             this.devices[i].$iframe.contentWindow.postMessage({method: 'scroll',
                 top : top, left: left}, this.origin);
         }
     }
 }
 
+// update device set in stage
 p.updateDeviceSet = function(deviceSet) {
-	//console.log(['stage change device set', this.devices.length, deviceSet.devices.length]);
-
-	// 1 = 4 - 3 // -2 = 1 - 3
 	var devices = deviceSet.devices,
 		currentCount = this.devices.length,
 		newCount = devices.length,
@@ -116,24 +124,17 @@ p.updateDeviceSet = function(deviceSet) {
 		newDevices = [];
 
 	for(var i = 1; i <= iterations; i++) {
-		//console.log(['stage update device', iterations, i, newCount, currentCount, devices[i]]);
-
+        // create device
 		if(i <= newCount && i > currentCount) {
-			// create device
-			//console.log('new');
 			var newDevice = new device().init(devices[i-1]);
 			newDevices.push(newDevice);
 			newDevice.updateHref(this.href);
 		}
-		//		4	4				4	3
 		else if(i <= currentCount && i > newCount) {
 			// remove device
-			//console.log('remove');
 			this.devices[i-1].destroy();
 		}
 		else {
-			// update device
-			//console.log('update');
 			newDevices.push(this.devices[i-1]);
 			this.devices[i-1].update(devices[i-1]);
 		}
@@ -141,7 +142,6 @@ p.updateDeviceSet = function(deviceSet) {
 
 	this.devices = newDevices;
 	this.updateDeviceScale(_mainbar.getDeviceScale());
-	//console.log(['device deploy done.', newDevices]);
 }
 
 p.updateDeviceScale = function(scale) {
