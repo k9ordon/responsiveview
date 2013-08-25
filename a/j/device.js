@@ -5,7 +5,6 @@ var device = function() {
 		this.$hardware;
 		this.$iframe;
 		this.$name;
-		this.$size;
 
 		this.elSize = {
 			h: null,
@@ -43,11 +42,7 @@ p.createDevice = function() {
 	this.$name = document.createElement('div');
 	this.$name.classList.add('name');
 
-	this.$size = document.createElement('div');	
-	this.$size.classList.add('size');
-
 	this.$el.appendChild(this.$name);
-	this.$el.appendChild(this.$size);
 
 	this.$hardware.appendChild(this.$iframe);
 	this.$el.appendChild(this.$hardware);
@@ -65,8 +60,7 @@ p.events = function() {
 p.update = function(data) {
 	this.deviceData = data;
 
-	this.$name.innerText = data.name;
-	this.$size.innerText = data.w  + 'x' + data.h;
+	this.$name.innerText = data.w  + 'x' + data.h + ' ' + data.name;
 	this.$iframe.height = data.h;
 	this.$iframe.width = data.w;
 
@@ -115,7 +109,9 @@ p.updateScale = function(scale) {
 	this.$el.style.height = (this.elSize.h) * scale;
 
 	this.$hardware.style.width = this.hardwareSize.w;
-	this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
+	//this.$hardware.style.left = Math.floor(0-(this.hardwareSize.w - (this.hardwareSize.w * scale)) / 2);
+
+    console.log('scale', this.$el.style.width, scale, this.hardwareSize, (this.hardwareSize.w * scale));
 
 	this.$hardware.style.webkitTransform = "scale(" + scale + ")";
 }
