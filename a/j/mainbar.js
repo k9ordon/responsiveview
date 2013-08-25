@@ -4,7 +4,6 @@ var mainbar = function() {
 		this.$navigationForm = document.querySelector('form#navigation');
 		this.$deviceSetSelect = document.querySelector('select#deviceSetSelect');
 		this.$deviceScaleSelect = document.querySelector('select#deviceScaleSelect');	
-		this.$focusState = document.querySelector('#focusState');	
 	},
 	p = mainbar.prototype;
 
@@ -19,9 +18,6 @@ p.events = function() {
 	this.$navigationForm.addEventListener('submit', this.updateHref);
 	this.$deviceSetSelect.addEventListener('change', this.updateDeviceSet);
 	this.$deviceScaleSelect.addEventListener('change', this.updateDeviceScale);
-
-	window.addEventListener('focus', this.updateFocus);
-	window.addEventListener('blur', this.updateFocus);
 
 	document.addEventListener('keyup', this.keyupHandler);
 }
@@ -69,16 +65,4 @@ p.updateDeviceScale = function(e) {
 
 p.getDeviceScale = function() {
 	return this.$deviceScaleSelect.value;
-}
-
-p.updateFocus = function(e) {
-	console.log(['focus changed', document.activeElement]);
-	if(document.activeElement == window.document.body) {
-		_mainbar.$focusState.innerText = 'on';
-		_stage.unfocusAllDevices();
-	}
-	else {
-		_mainbar.$focusState.innerText = 'off';
-		_stage.focusDevice(document.activeElement);
-	}
 }
