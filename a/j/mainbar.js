@@ -9,10 +9,8 @@ var mainbar = function() {
 	p = mainbar.prototype;
 
 p.init = function() {
-	//console.log(['mainbar init', this.$el]);
 	this.createDeviceSelect();
 	this.events();
-
 	return this;
 }
 
@@ -30,6 +28,7 @@ p.events = function() {
 
 p.keyupHandler = function(e) {
 	//console.log(['keydown', e.keyCode]);
+    if(document.activeElement.tagName === 'INPUT') return;
 
 	// 1-9 for set scale
 	if(e.keyCode >= 48 && e.keyCode <= 57) {
@@ -53,12 +52,10 @@ p.createDeviceSelect = function() {
 
 p.updateHref = function(e) {
 	e.preventDefault();
-	//console.log(['mainbar load href', this.href.value, e]);
 	_stage.setHref(this.href.value);
 }
 
 p.updateDeviceSet = function(e) {
-	//console.debug(['changed device set', this.value, deviceSets[this.value], e]);
 	_stage.updateDeviceSet(_mainbar.getDeviceSet());
 }
 
@@ -67,7 +64,6 @@ p.getDeviceSet = function() {
 }
 
 p.updateDeviceScale = function(e) {
-	//console.debug(['changed device scale', this.value, _mainbar.getDeviceScale()]);
 	_stage.updateDeviceScale(_mainbar.getDeviceScale());
 }
 
