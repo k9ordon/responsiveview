@@ -3,29 +3,36 @@
     "name": "Responsive View - Chrome Helper",
     "version": "0.5",
     "description": "Helper Chrome extenstion for rv.k94n.com",
-    "icons": { "16": "icon16.png",
-           "48": "icon48.png",
-          "128": "icon128.png" },
-
-    "permissions": ["tabs","<all_urls>"],
-
+    "icons": { 
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png" 
+        },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "<all_urls>",
+        "webRequest",
+        "webRequestBlocking"
+    ],
     "content_scripts": [
+    {
+        "matches": ["http://rv.duro/*"],
+        "js": ["config.js", "host.js"],
+        "run_at": "document_idle",
+        "all_frames": true
+    },
     {
         "matches": ["http://*/*"],
         "js": ["config.js", "client.js"],
         "run_at": "document_idle",
         "all_frames": true
-    }
-    ],
-
+    }],
     "browser_action": {
         "default_title": "Responsive View",
         "default_icon": "icon48.png"
     },
-
     "background": {
         "scripts": ["config.js", "background.js"]
     }
-
-
 }
