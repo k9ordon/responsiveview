@@ -1,4 +1,12 @@
 var deviceSets = [
+/*
+    {
+        name : 'One Device',
+        devices : [
+            { name: 'iPhone 4', w: 320, h:480, type:'phone', rotated: { w:416, h:320} }
+        ]
+    },
+*/
     {
         name : 'Simple Devices',
         devices : [
@@ -6,7 +14,8 @@ var deviceSets = [
             { name: 'Small Tablet', w: 600, h: 1000, type:'tablet' },
             { name: 'Apple iPad', w: 768, h:1024, type:'tablet' },
             { name: '15"', w: 1024, h:768, type:'desktop' },
-            { name: 'Macbook 13"', w: 1280, h:800, type:'laptop' },        ]
+            { name: 'Macbook 13"', w: 1280, h:800, type:'laptop' },        
+        ]
     },
     {
         name : 'Common Devices',
