@@ -16,12 +16,13 @@
         "webRequestBlocking"
     ],
     "content_scripts": [
-    {
+    /*{
         "matches": ["http://rv.duro/*"],
         "js": ["config.js", "host.js"],
         "run_at": "document_idle",
         "all_frames": true
     },
+    */
     {
         "matches": ["http://*/*"],
         "js": ["config.js", "client.js"],
