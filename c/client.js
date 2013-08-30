@@ -1,7 +1,7 @@
 if(window.location.origin == rv_host) {
     document.body.classList.add('hasExtension');
 } else { //  if document.referrer.indexOf(rv_host) == 0
-    console.log('===> ' + window.location.href);
+    //console.log('===> ' + window.location.href);
 
     var rvwaiter = function() { return this; },
         p = rvwaiter.prototype;
