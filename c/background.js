@@ -1,65 +1,67 @@
 //chrome.browserAction.setBadgeText({text : 'ninja'});
-chrome.browserAction.onClicked.addListener(function(tab) {
+var browserActionHandler = function(tab) {
     if(tab.url.indexOf(rv_host) !== 0) {
         chrome.tabs.update(tab.id, {url: rv_host + '#' + tab.url});
     }
-});
-
-var onRequest = function (request, sender, sendResponse) {
-    console.log('onRequest', sender, request);
-    sendResponse({});
 };
-chrome.extension.onRequest.addListener(onRequest);
+chrome.browserAction.onClicked.addListener(browserActionHandler);
 
-
-/*
 
 // modify useragent onBeforeSendHeaders
 
-var requestFilter = {
-        urls: [ "<all_urls>" ]
-    },
+var frameAgents = {},
+    requestFilter = { urls: [ "<all_urls>" ] },
+    info = ['requestHeaders','blocking'];
     
-    extraInfoSpec = ['requestHeaders','blocking'],
-    
-    handler = function( details ) {
-
-        var headers = details.requestHeaders,
+var onBeforeSendHeadersHandler = function(details) {
+    var headers = details.requestHeaders,
         blockingResponse = {};
 
-        if(details.type !== 'sub_frame') return blockingResponse;
-        console.log('webrequest', details);
+    if(details.type !== 'sub_frame') return blockingResponse;
+    //console.log('webrequest', details.frameId, details.url);
 
+    // check if url is handshake
+    var handshake = details.url.split("http://handshake/#")[1];
+
+    if(handshake) {
+        console.log('is handshake request' + handshake);
+        frameAgents[details.frameId] = handshake;
+        return {cancel: true};
+    }
+
+    if(frameAgents.hasOwnProperty(details.frameId)) {
         for( var i = 0, l = headers.length; i < l; ++i ) {
             if( headers[i].name == 'User-Agent' ) {
-                headers[i].value = 'New User-Agent';
+                headers[i].value = frameAgents[details.frameId];
                 break;
             }
         }
 
         blockingResponse.requestHeaders = headers;
-        return blockingResponse;
-    };
-chrome.webRequest.onBeforeSendHeaders.addListener( handler, requestFilter, extraInfoSpec );
-*/
+        //blockingResponse.redirectUrl = ""+(details.url.split("#handshake"))[0];
+    }
 
-// modify xframe header
+    return blockingResponse;
+};
 
-chrome.webRequest.onHeadersReceived.addListener(
-    function(info) {
-        var headers = info.responseHeaders;
-        for (var i=headers.length-1; i>=0; --i) {
-            var header = headers[i].name.toLowerCase();
-            if (header == 'x-frame-options' || header == 'frame-options') {
-                headers.splice(i, 1); // Remove header
-                console.log('removed x-frame', info);
-            }
+var onHeadersReceivedHandler = function(details) {
+    var headers = details.responseHeaders || [],
+        blockingResponse = {};
+
+    if(details.type !== 'sub_frame') return blockingResponse;
+    //console.log('webrequest end', details);
+
+    for (var i=headers.length-1; i>=0; --i) {
+        var header = headers[i].name.toLowerCase();
+        if (header == 'x-frame-options' || header == 'frame-options') {
+            headers.splice(i, 1); // Remove header
+            console.log('removed x-frame', details);
         }
-        return {responseHeaders: headers};
-    },
-    {
-        urls: [ '*://*/*' ], // Pattern to match all http(s) pages
-        types: [ 'sub_frame' ]
-    },
-    ['blocking', 'responseHeaders']
-);
+    }
+
+    blockingResponse.requestHeaders = headers;
+    return blockingResponse;
+};
+
+chrome.webRequest.onBeforeSendHeaders.addListener(onBeforeSendHeadersHandler, requestFilter, info);
+chrome.webRequest.onHeadersReceived.addListener(onHeadersReceivedHandler, requestFilter);

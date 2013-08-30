@@ -1,19 +1,15 @@
 if(window.location.origin == rv_host) {
     document.body.classList.add('hasExtension');
 } else { //  if document.referrer.indexOf(rv_host) == 0
-    console.log('===> responsive view client injected at ' + window.location.origin);
+    console.log('===> ' + window.location.href);
 
     var rvwaiter = function() { return this; },
         p = rvwaiter.prototype;
     
     p.init = function() {
-        console.log('rv waiter init');
         addEventListener("message", this.onMessage, false);
-        try {
-            top.postMessage({method: 'handshake', h: window.innerHeight, w: window.innerWidth, l: window.location.href, o: window.location.origin, r: document.referrer}, rv_host);
-        } catch(e) {
-            console.log('nope');
-        }
+        
+        top.postMessage({method: 'handshake', h: window.innerHeight, w: window.innerWidth, l: window.location.href, o: window.location.origin, r: document.referrer}, rv_host);
     }
 
     p.onMessage = function(event) {

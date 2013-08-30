@@ -15,6 +15,9 @@ var stage = function() {
 
 p.init = function() {
 	this.events();
+
+    this.updateDeviceSet(_mainbar.getDeviceSet());
+
 	return this;
 }
 
@@ -26,9 +29,9 @@ p.events = function() {
     // document.addEventListener("scroll", this.onScroll, false);
 
     // mouseover stage
-    //document.addEventListener("mouseover", this.onFocus, false);
-    //document.addEventListener("focus", this.onFocus, false);
-    //document.addEventListener("blur", this)
+    // document.addEventListener("mouseover", this.onFocus, false);
+    // document.addEventListener("focus", this.onFocus, false);
+    // document.addEventListener("blur", this)
 }
 
 p.onScroll = function(event) {
@@ -65,7 +68,7 @@ p.onMessage = function(event){
 // register a subframe handshake as device
 p.deviceHandshake = function(event) {
     var request = event.data;
-    console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
+    //console.log('stage.registered handshake', request.l, request.r, this.href, this.origin);
 
     if(this.href == null // initial handshake
         || this.href == request.l // new frame handshake
@@ -101,9 +104,6 @@ p.updateStageHref = function(href) {
 p.setHref = function(href) {
     this.href = null;
 
-	if(this.devices.length == 0) {
-		this.updateDeviceSet(_mainbar.getDeviceSet());
-	}
     // update all subframes
 	for(var i = 0; i < this.devices.length; i++) {
 		this.devices[i].updateHref(href);
@@ -132,7 +132,9 @@ p.updateDeviceSet = function(deviceSet) {
 	for(var i = 1; i <= iterations; i++) {
         // create device
 		if(i <= newCount && i > currentCount) {
-			var newDevice = new device().init(devices[i-1]);
+            //console.log('create device');
+			var newDevice = new device();
+            newDevice.init(devices[i-1]);
 			newDevices.push(newDevice);
 			newDevice.updateHref(this.href);
 		}
@@ -140,7 +142,9 @@ p.updateDeviceSet = function(deviceSet) {
 			// remove device
 			this.devices[i-1].destroy();
 		}
+            // update device
 		else {
+            //console.log('update device');
 			newDevices.push(this.devices[i-1]);
 			this.devices[i-1].update(devices[i-1]);
 		}

@@ -37,6 +37,7 @@ p.createDevice = function() {
 
 	// frame
 	this.$iframe = document.createElement('iframe');
+    //this.$iframe.sandbox = "allow-scripts allow-same-origin";
 
 	// info
 	this.$name = document.createElement('div');
@@ -61,6 +62,9 @@ p.update = function(data) {
 	this.$name.innerText = data.w  + 'x' + data.h + ' ' + data.name;
 	this.$iframe.height = data.h;
 	this.$iframe.width = data.w;
+
+    //console.log('device update', this.$iframe);
+    this.$iframe.src = "http://handshake/#" + data.agent;
 
 	// remove other types ... lame
     this.$hardware.className = 'hardware';
@@ -93,6 +97,7 @@ p.getHardwareSize = function() {
 }
 
 p.updateHref = function(href) {
+    if(!href) return;
 	this.$iframe.src = href;
 }
 

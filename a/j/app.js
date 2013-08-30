@@ -13,7 +13,7 @@ _stage.init();
 
 if(window.location.hash) {
     var hashUrl = window.location.hash.substring(1);
-    _stage.setHref(hashUrl);
+    setTimeout(function() { _stage.setHref(hashUrl) }, 100);
 } else {
     //_stage.setHref('hello.html');
     _stage.setHref('http://k94n.com');
