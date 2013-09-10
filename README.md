@@ -23,7 +23,7 @@ develop & explorer responsive webdesign
 
 ## ViennaJs Slides 2013-08-28
 
-<https://docs.google.com/presentation/d/1CFkeBiBl-rPUBW6sdXEP-kZYg6v3P677SMRNIYxKe-I/pub?start=false&loop=false&delayms=3000>
+<https://speakerdeck.com/k9ordon/responsive-view-viennajs-2013-08>
 
 ## Upcoming
 
