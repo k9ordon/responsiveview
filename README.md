@@ -32,3 +32,5 @@ develop & explorer responsive webdesign
 - rotateable devices
 - share/explore responsive sites
 - create sharable screenshots
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/k9ordon/responsiveview/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
